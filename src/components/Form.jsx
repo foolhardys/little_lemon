@@ -4,7 +4,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Form = () => {
 
-  const [date, setDate] = useState('')
+  const url = 'https://raw.githubusercontent.com/Meta-Front-End-Developer-PC/capstone/master/api.js'
+
+
+
+  const [date, setDate] = useState(new Date())
   const [selectedOption, setSelectedOption] = useState('Indoor Seating')
   const [diners, setDiners] = useState(2)
   const [ocassion, setOcassion] = useState('birthday')
@@ -15,12 +19,26 @@ const Form = () => {
   const [isTermsChecked, setIsTermsChecked] = useState(false)
   const [textAreaValue, setTextAreaValue] = useState('')
 
+  
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (!date || !time || isTermsChecked === false) {
       alert('Fill in all fields before submitting')
       return;
+    }
+
+    const formData = {
+      Date: date,
+      Seating: selectedOption,
+      Diners: diners,
+      Ocassion: ocassion,
+      Time: time,
+      Name: name,
+      Email: email,
+      Phone: phone,
+      Terms: isTermsChecked,
+      Instructions: textAreaValue
     }
 
     toast.success('Form submitted successfully!', {
@@ -32,8 +50,8 @@ const Form = () => {
       draggable: true,
       progress: undefined,
     });
-    
-    console.log(event);
+
+    submitFormData(formData);
     console.log('form submitted');
     setDate('')
     setDiners(2)
@@ -44,7 +62,27 @@ const Form = () => {
     setPhone('')
     setIsTermsChecked(false)
     setTextAreaValue('')
+
   }
+
+
+  const submitFormData = (data) => {
+    // Replace 'YOUR_API_ENDPOINT' with the actual API endpoint URL
+    fetch('https://raw.githubusercontent.com/Meta-Front-End-Developer-PC/capstone/master/api.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('API Response:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
 
 
   return (
@@ -83,7 +121,7 @@ const Form = () => {
                 type="date"
                 id="date"
                 className='custom-date-input'
-                placeholder='Select Date'
+                placeholder={new Date()}
                 value={date}
                 onChange={(e) => setDate(e.target.value)} />
             </div>
@@ -181,7 +219,7 @@ const Form = () => {
           </div>
           <button type="submit" className='btn'>Confirm Reservation</button>
         </form>
-        <ToastContainer/>
+        <ToastContainer />
       </section>
     </section>
   )
