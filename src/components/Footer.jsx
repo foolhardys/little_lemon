@@ -30,7 +30,7 @@ const Footer = () => {
                     <ul>
                         {socialLinks.map((link) => (
                             <li key={link.name}>
-                                <a href={link.url} target="_blank" rel="noopener noreferrer">
+                                <a href={link.url} target="_blank" rel="noopener noreferrer" className='a'>
                                     {link.name}
                                 </a>
                             </li>
