@@ -86,9 +86,9 @@ const Form = () => {
 
 
   return (
-    <section className='section  background-primary'>
+    <section className='section'>
       <section className='banner-recipes'>
-        <h2 className='form-heading'> Reservations</h2>
+        <h1 className='form-heading text-center'> Reservations</h1>
         <form className='form form-layout' onSubmit={handleSubmit}>
           <div className="seating form-row">
             <div className="field">
@@ -196,12 +196,12 @@ const Form = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)} />
             </div>
-            <div className="field">
+            <div className="field ">
               <label htmlFor="tnc" className='form-label tnc'>Agree to the terms and conditions*
                 <input
                   type="checkbox"
                   id="tnc"
-                  className='form-input'
+                  className='form-input terms'
                   checked={isTermsChecked}
                   onChange={(e) => setIsTermsChecked(e.target.checked)} />
               </label>
