@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from '../assets/little lemon logos/logo.png'
-import footerimg from '../assets/Pics/restaurant.jpg'
 import { FaFacebook } from 'react-icons/fa';
 import { FaYoutube } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa';
